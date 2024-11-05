@@ -1,35 +1,211 @@
-@import './base.css';
+/* Reset basic styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-#app {
-  max-width: 1280px;
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f5f7fa;
+  line-height: 1.6;
+  padding: 0 20px;
+}
+
+/* Container styling */
+.container {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-a,
-.green {
+/* Headings */
+h1, h2, h3 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2, h3 {
+  font-size: 1.5rem;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #333;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 20px;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+nav a:hover {
+  color: #f5f7fa;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+/* Buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 20px auto;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+/* Table styling for quiz */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Quiz box and rows */
+.quiz-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.quiz-box label {
+  font-weight: bold;
+  color: #333;
+}
+
+.quiz-box input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.quiz-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Color meaning box */
+.color-meaning {
+  border: 2px solid #4CAF50;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  background-color: #e7ffe7;
+}
+
+.color-meaning h3 {
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.color-meaning p, .color-meaning ul {
+  margin: 10px 0;
+}
+
+.color-meaning ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+.color-meaning li {
+  margin: 5px 0;
+}
+
+/* Score display styling */
+.score-display {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.score-display span {
+  color: #4CAF50;
+}
+
+/* Center content in general */
+.center-content {
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .quiz-row {
+    grid-template-columns: 1fr;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  button {
+    width: 100%;
   }
 }
