@@ -1,21 +1,24 @@
 <template>
-<h1>Color Personality Quiz Intructions</h1>
-<p>Directions: Compare all 4 boxes in each row. Do not analyze each word; Just get a sense of each box. Score each of the four boxes in each row, from most like you to least like you: 4 = most, 3 = a lot, 2 = somewhat, 1 = least</p>
+    <div class="content">
+        <h1>Color Personality Quiz Intructions</h1>
+        <p>Directions: Compare all 4 boxes in each row. Do not analyze each word; Just get a sense of each box. Score each of the four boxes in each row, from most like you to least like you: 4 = most, 3 = a lot, 2 = somewhat, 1 = least</p>
 
-<table>
-    <tbody>
-      <tr v-for="rowId in ['row1', 'row2', 'row3', 'row4', 'row5']" :key="rowId">
-        <QuizRow :rowData="getQuizRowById(rowId)" />
-      </tr>
-    </tbody>
-</table>
+        <table>
+            <tbody>
+            <tr v-for="rowId in ['row1', 'row2', 'row3', 'row4', 'row5']" :key="rowId">
+                <QuizRow :rowData="getQuizRowById(rowId)" />
+            </tr>
+            </tbody>
+        </table>
 
-<div v-if="!validateQuiz"> Please fill out all boxes </div>
-<button
-    :disabled="!validateQuiz"
-    @click="submitAnswers">
-    Get Results
-</button>
+        <div v-if="!validateQuiz"> Please fill out all boxes </div>
+        <button
+            :disabled="!validateQuiz"
+            @click="submitAnswers">
+            Get Results
+        </button>
+    </div>
+
 </template>
 
 <script>
@@ -31,16 +34,18 @@ export default{
         ...mapState(useQuizScore, ['getQuizRowById', 'getAllUserAnswer']),
         validateQuiz() {
         const answers = this.getAllUserAnswer;
-        for (var answer in answers){
-            if (answer == 0){
-                return false;
+        console.log(answers);
+        for (const key in answers) {
+            console.log(key);
+            if (answers[key] === undefined || answers[key] === null || answers[key] === 0) {
+                return false; 
             }
         }
-        return true;
-        }
+        return true; 
+    }
     },
     methods:{
-        ...mapActions(useQuizScore, ['calculateColorScore', 'determineColorResult', 'clearResult']),
+        ...mapActions(useQuizScore, ['calculateColorScore', 'determineColorResult', 'clearResults']),
         submitAnswers() {
             this.calculateColorScore();
             this.determineColorResult();
@@ -48,7 +53,7 @@ export default{
         } 
     },
     created() {
-        this.clearResult()
+        this.clearResults()
     }
 }
 </script>

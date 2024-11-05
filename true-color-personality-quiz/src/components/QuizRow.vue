@@ -1,10 +1,10 @@
 <template>
 <tr class="quiz-row">
-    <td v-for="cell in rowData">
-      <QuizBox :cellID="cell.cellID">
+    <td v-for="(words, key) in rowData">
+      <QuizBox :cellID="key">
         <template #word>
           <ul class="word-list">
-            <li v-for="word in cell" :key="word">
+            <li v-for="word in words" :key="word">
               {{ word }}
             </li>
           </ul>
@@ -18,8 +18,8 @@ import QuizBox from './QuizBox.vue';
 export default{
     props: {
         rowData: {
-            type: Array,
-            required: true
+          type: Object, 
+          required: true
         }
     },
     components: {

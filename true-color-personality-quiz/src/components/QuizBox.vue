@@ -6,6 +6,7 @@
             v-model="numberInput"
             min="1"
             max="4"
+            :id="`${cellID}-input`"
         />
         <slot name="word"></slot>
     </div>
@@ -16,15 +17,17 @@ import { useQuizScore } from '@/stores/quizStore';
 import { mapState, mapActions } from 'pinia';
 
 export default{
-    cellID: null,
+    props:{
+        cellID: String,
+    },
     computed: {
         ...mapState(useQuizScore, ['getUserAnswerById']),
         numberInput: {
             get() {
-                return this.getUserAnswerById(cellID);
+                return this.getUserAnswerById(this.cellID);
             },
             set(newVal){
-                this.updateAnswer(cellID, newVal);
+                this.updateAnswer(this.cellID, newVal);
             }
         }
     },

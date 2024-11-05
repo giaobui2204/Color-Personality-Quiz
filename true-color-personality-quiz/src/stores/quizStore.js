@@ -51,7 +51,7 @@ export const useQuizScore = defineStore("color-personality-quiz", {
             green: {
                 shortDesc: "Controllers & Idea Generators",
                 adjectives: "analytical, conceptual, attentive, logical, perfectionistic & abstract",
-                characteristics: ["Decisive","Demananding", "Expects Efficiency", "Expects Results", "Has Strong Opinions", "Has Strong Opinions", "Likes Conflict", "Needs to be in Charge", "Separates Facts from Feelings", "Wants Action/Change"],
+                characteristics: ["Decisive","Demananding", "Expects Efficiency", "Expects Results", "Has Strong Opinions", "Likes Conflict", "Needs to be in Charge", "Separates Facts from Feelings", "Wants Action/Change"],
                 sentence: "I value intelligence, insight, fairness, and justice. I need explanations and answers."
             },
             gold: {
@@ -76,7 +76,7 @@ export const useQuizScore = defineStore("color-personality-quiz", {
     }, 
     getters: {
         getColorsAnswerKey(state) {
-            return state.colorsAnwerKey;
+            return state.colorsAnswerKey;
         },
         getQuizRows(state) {
             return state.quizRow;
@@ -96,25 +96,25 @@ export const useQuizScore = defineStore("color-personality-quiz", {
         getUserColorWinner(state) {
             return state.userColorWinner;
         },
-        getQuizRowById(state, rowNum) {
+        getQuizRowById: (state) => (rowNum) => {
             return state.quizRow[rowNum];
         },
-        getUserAnswerById(state, id) {
+        getUserAnswerById: (state) => (id) => {
             return state.userAnswer[id];
         },
-        getColorMeaningById(state, color) {
+        getColorMeaningById: (state) => (color) => {
             return state.colorMeaning[color];
         },
-        getUserColorScoreById(state, colorId){
+        getUserColorScoreById:(state) => (colorId) =>{
             return state.userColorScore[colorId];
         }
     },
     actions: {
-        udpateAnswer(id, value){
+        updateAnswer(id, value) {
             this.userAnswer[id] = value;
         },
         calculateColorScore(){
-            for (var color in this.colorsAnwerKey){
+            for (var color in this.colorsAnswerKey){
                 for (var id of this.colorsAnswerKey[color]){
                     if (this.userAnswer[id] != 0){
                         this.userColorScore[color] += this.userAnswer[id];
@@ -136,7 +136,7 @@ export const useQuizScore = defineStore("color-personality-quiz", {
             }
             this.userColorWinner = result;
         },
-        clearResult(){
+        clearResults(){
             this.userAnswer = {
                 A: 0,
                 B: 0,

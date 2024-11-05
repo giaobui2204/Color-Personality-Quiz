@@ -1,10 +1,10 @@
 <template>
   <header>
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/color_personality_quiz">Personality Quiz</RouterLink>
+        <RouterLink to="/color_personality_results">Personality Quiz Result</RouterLink>
         <RouterLink to="/all_color_meaning">All Color Meanings</RouterLink>
       </nav>
   </header>
